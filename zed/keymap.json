@@ -1,0 +1,110 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-shift-l": "editor::SelectAllMatches"
+    }
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-shift-l": "terminal::Clear"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-l": "editor::DeleteLine"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-y": "editor::DeleteLine"
+    }
+  },
+  {
+    "context": "Diagnostics > Editor",
+    "unbind": {
+      "alt-6": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "SettingsWindow",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow"
+    }
+  },
+  {
+    "context": "RulesLibrary",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-w": "workspace::CloseActiveDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-w": [
+        "terminal::SendKeystroke",
+        "ctrl-w"
+      ]
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-w": [
+        "pane::CloseActiveItem",
+        {
+          "close_pinned": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-w": "editor::SelectLargerSyntaxNode"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-w": [
+        "pane::CloseActiveItem",
+        {
+          "close_pinned": false
+        }
+      ]
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-. ctrl-/": "pane::CloseAllItems"
+    }
+  }
+]
