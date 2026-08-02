@@ -1,0 +1,191 @@
+" ============================================================
+" LazyVim-style IdeaVim config
+" Which-Key plugin intentionally disabled for now
+" ============================================================
+
+" --- Leaders ---
+let mapleader = " "
+let maplocalleader = "\\"
+
+" --- Core behavior ---
+set number
+set relativenumber
+set scrolloff=8
+set sidescrolloff=8
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set clipboard=unnamed,ideaput
+set ideajoin
+set idearefactormode=keep
+
+" Leader sequences wait this long for the next key.
+set timeout
+set timeoutlen=500
+
+" A lone Space will wait briefly, then do nothing instead of moving right.
+" Space is only a prefix now because Which-Key is disabled.
+nnoremap <leader> <Nop>
+
+" ============================================================
+" Basic editing
+" ============================================================
+
+" Save
+nmap <C-s> <Action>(SaveAll)
+imap <C-s> <Esc><Action>(SaveAll)
+
+" Escape insert mode with kj
+inoremap kj <Esc>
+
+" Clear search highlight
+nnoremap <Esc> :nohlsearch<CR>
+
+" Split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Relative line numbers toggle
+nnoremap <leader>uL :set relativenumber!<CR>
+
+" ============================================================
+" Files, fuzzy finding, search
+" ============================================================
+
+" LazyVim: <leader><space> Find Files
+nmap <leader><leader> <Action>(GotoFile)
+
+" Files
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fF <Action>(GotoFile)
+nmap <leader>fr <Action>(RecentFiles)
+nmap <leader>fS <Action>(SearchEverywhere)
+
+" Open editors / buffers
+nmap <leader>, <Action>(Switcher)
+nmap <leader>bb <Action>(Switcher)
+
+" Stable tool-window shortcuts
+nmap <leader>bt <Action>(ActivateTerminalToolWindow)
+nmap <leader>bp <Action>(ActivateProjectToolWindow)
+nmap <leader>bg <Action>(ActivateVersionControlToolWindow)
+nmap <leader>bc <Action>(ActivateCommitToolWindow)
+nmap <leader>bs <Action>(ActivateStructureToolWindow)
+
+" Stable file navigation shortcuts
+nmap <leader>br <Action>(RecentFiles)
+nmap <leader>bf <Action>(GotoFile)
+
+" Project text search
+nmap <leader>/ <Action>(FindInPath)
+nmap <leader>sg <Action>(FindInPath)
+nmap <leader>sw <Action>(FindInPath)
+
+" Symbols
+nmap <leader>ss <Action>(GotoSymbol)
+nmap <leader>sS <Action>(GotoSymbol)
+
+" Project explorer
+nmap <leader>e <Action>(ActivateProjectToolWindow)
+nmap <leader>fe <Action>(ActivateProjectToolWindow)
+
+" ============================================================
+" Code navigation / LSP-style actions
+" ============================================================
+
+" Go to definition, references, implementation, type
+nmap gd <Action>(GotoDeclaration)
+nmap gD <Action>(GotoDeclaration)
+nmap gr <Action>(FindUsages)
+nmap gI <Action>(GotoImplementation)
+nmap gy <Action>(GotoTypeDeclaration)
+
+" Documentation and parameter help
+nmap K <Action>(ShowHoverInfo)
+nmap gK <Action>(ParameterInfo)
+imap <C-k> <Action>(ParameterInfo)
+
+" Code actions, rename, format
+nmap <leader>ca <Action>(ShowIntentionActions)
+vmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>cf <Action>(ReformatCode)
+vmap <leader>cf <Action>(ReformatCode)
+nmap <leader>co <Action>(OptimizeImports)
+
+" Diagnostics
+nmap <leader>cd <Action>(ShowErrorDescription)
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+
+" Comments
+nmap <leader>c/ <Action>(CommentByLineComment)
+vmap <leader>c/ <Action>(CommentByLineComment)
+
+" ============================================================
+" Tabs / buffers
+" ============================================================
+
+nmap <S-h> <Action>(PreviousTab)
+nmap <S-l> <Action>(NextTab)
+nmap [b <Action>(PreviousTab)
+nmap ]b <Action>(NextTab)
+
+" Close current tab
+nmap <leader>bd <Action>(CloseContent)
+
+" Close all tabs except current
+nmap <leader>bo <Action>(CloseAllEditorsButActive)
+
+" Close all tabs
+nmap <leader>bA <Action>(CloseAllEditors)
+
+" Reopen recently closed tab
+nmap <leader>bu <Action>(ReopenClosedTab)
+
+" LazyVim-style tab group
+nmap <leader><Tab>d <Action>(CloseContent)
+nmap <leader><Tab>o <Action>(CloseAllEditorsButActive)
+nmap <leader><Tab>] <Action>(NextTab)
+nmap <leader><Tab>[ <Action>(PreviousTab)
+
+" ============================================================
+" Splits / windows
+" ============================================================
+
+nmap <leader>- <Action>(SplitHorizontally)
+nmap <leader>| <Action>(SplitVertically)
+nnoremap <leader>wd <C-w>c
+nmap <leader>wm <Action>(MaximizeEditorInSplit)
+nmap <leader>uZ <Action>(MaximizeEditorInSplit)
+
+" ============================================================
+" Find / replace
+" ============================================================
+
+nmap <leader>sf <Action>(Find)
+nmap <leader>sr <Action>(ReplaceInPath)
+
+" ============================================================
+" Git
+" ============================================================
+
+nmap <leader>gs <Action>(ActivateVersionControlToolWindow)
+nmap <leader>gb <Action>(Annotate)
+nmap ]h <Action>(VcsShowNextChangeMarker)
+nmap [h <Action>(VcsShowPrevChangeMarker)
+
+" ============================================================
+" Run / debug
+" ============================================================
+
+nmap <leader>rr <Action>(Run)
+nmap <leader>rd <Action>(Debug)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dc <Action>(Resume)
+nmap <leader>di <Action>(StepInto)
+nmap <leader>dO <Action>(StepOver)
+nmap <leader>do <Action>(StepOut)
